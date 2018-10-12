@@ -1,5 +1,15 @@
-<?php foreach ($users as $user): ?>
-<div>
-    <?= "Name: {$user['name']}, Email: {$user['email']}, City: {$user['city']}" ?>
-</div>
-<?php endforeach ?>
+<table border="solid 1px">
+    <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>City</th>
+    </tr>
+    <?php foreach ($users as $user): ?>
+    <tr>
+        <td><?= "{$user['name']}" ?></td>
+        <td><?= "{$user['email']}" ?></td>
+        <td><?= "{$user['city']}" ?></td>
+        <td><a href="user/<?= $user['id'] ?>/edit">Edit</a></td>
+    </tr>
+    <?php endforeach ?>
+</table>

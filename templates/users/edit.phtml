@@ -1,26 +1,27 @@
-<form action="/users" method="post">
+<form action="/users/<?= $user['id'] ?>" method="post">
+    <input type="hidden" name="_METHOD" value="PATCH">
     <div>
         <label>
             Имя
-            <input type="text" name="user[name]">
+            <input type="text" required name="user[name]" value="<?= isset($user['name']) ? htmlspecialchars($user['name']) : '' ?>">
         </label>
     </div>
     <div>
         <label>
             Email
-            <input type="email" required name="user[email]">
+            <input type="email" required name="user[email]" value="<?= isset($user['email']) ? htmlspecialchars($user['email']) : '' ?>">
         </label>
     </div>
     <div>
         <label>
             Пароль
-            <input type="password" required name="user[password]">
+            <input type="password" required name="user[password]" value="<?= isset($user['password']) ? htmlspecialchars($user['password']) : '' ?>">
         </label>
     </div>
     <div>
         <label>
             Подтверждение пароля
-            <input type="password" required name="user[passwordConfirmation]">
+            <input type="password" required name="user[passwordConfirmation]" value="<?= isset($user['password']) ? htmlspecialchars($user['password']) : '' ?>">
         </label>
     </div>
     <div>
