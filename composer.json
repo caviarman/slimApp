@@ -12,6 +12,7 @@
     "require": {
         "slim/slim": "^3.0",
         "slim/php-view": "^2.2",
-        "symfony/form": "^4.1"
+        "symfony/form": "^4.1",
+        "slim/flash": "^0.4.0"
     }
 }

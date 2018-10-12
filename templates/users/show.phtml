@@ -1,3 +1,14 @@
+<?php if (count($flash) > 0): ?>
+  <ul>
+  <?php foreach ($flash as $messages): ?>
+      <?php foreach ($messages as $message): ?>
+          <li><?= $message ?></li>
+      <?php endforeach ?>
+  <?php endforeach ?>
+  </ul>
+<?php endif ?>
+
+
 <table border="solid 1px">
     <tr>
         <th>Name</th>
@@ -9,7 +20,21 @@
         <td><?= "{$user['name']}" ?></td>
         <td><?= "{$user['email']}" ?></td>
         <td><?= "{$user['city']}" ?></td>
-        <td><a href="user/<?= $user['id'] ?>/edit">Edit</a></td>
+        <td>
+            <form action="/users/<?= $user['id']?>/edit">
+                <button>Edit</button>
+            </form>
+        </td>
+        <td>
+            <form action="/users/<?= $user['id']?>" method="post">
+                <input type="hidden" name="_METHOD" value="DELETE">
+                <button>Remove</button>
+            </form>
+        </td>
     </tr>
     <?php endforeach ?>
 </table>
+<br>
+<form action="/users/new">
+    <button>Create new User</button>
+</form>

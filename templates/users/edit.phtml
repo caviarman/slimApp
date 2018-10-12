@@ -1,41 +1,11 @@
 <form action="/users/<?= $user['id'] ?>" method="post">
     <input type="hidden" name="_METHOD" value="PATCH">
-    <div>
-        <label>
-            Имя
-            <input type="text" required name="user[name]" value="<?= isset($user['name']) ? htmlspecialchars($user['name']) : '' ?>">
-        </label>
-    </div>
-    <div>
-        <label>
-            Email
-            <input type="email" required name="user[email]" value="<?= isset($user['email']) ? htmlspecialchars($user['email']) : '' ?>">
-        </label>
-    </div>
-    <div>
-        <label>
-            Пароль
-            <input type="password" required name="user[password]" value="<?= isset($user['password']) ? htmlspecialchars($user['password']) : '' ?>">
-        </label>
-    </div>
-    <div>
-        <label>
-            Подтверждение пароля
-            <input type="password" required name="user[passwordConfirmation]" value="<?= isset($user['password']) ? htmlspecialchars($user['password']) : '' ?>">
-        </label>
-    </div>
-    <div>
-        <label>
-            Город
-            <select name="user[city]">
-                <option value="3">Москва</option>
-                <option value="13">Пенза</option>
-                <option value="399">Томск</option>
-            </select>
-        </label>
-    </div>
-    <input type="submit" value="Sign Up">
+    <?php require '_form.phtml' ?>
+    <input type="submit" value="Update">
 </form>
 <form action="/">
-<button>На главную</button>
+    <button>На главную</button>
+</form>
+<form action="/users">
+    <button>Пользователи</button>
 </form>
