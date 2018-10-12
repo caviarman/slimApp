@@ -1,3 +1,8 @@
+<style>
+   p {
+    color: red;
+   }
+  </style>
     <div>
         <label>
             Имя
@@ -19,10 +24,10 @@
     <div>
         <label>
             Пароль
-            <input type="password" name="user[password]">
+            <input type="password" name="user[password]" value="<?= isset($userData['password']) ? htmlspecialchars($userData['password']) : '' ?>">
         </label>
         <?php if (isset($errors['password'])): ?>
-            <div><?= $errors['password'] ?></div>
+            <p><?= $errors['password'] ?></p>
         <?php endif ?>
     </div>
     <div>

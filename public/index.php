@@ -31,8 +31,8 @@ $app->get('/users', function ($request, $response) use ($repo) {
         'flash' => $flash,
         'users' => $repo->all()
     ];
-    return $this->renderer->render($response, 'users/index.phtml', $params);
-})->setName('posts');
+    return $this->renderer->render($response, 'users/show.phtml', $params);
+})->setName('users');
 
 //new 
 $app->get('/users/new', function ($request, $response) use ($repo) {
