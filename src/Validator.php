@@ -15,7 +15,6 @@ class Validator
         if (count($arr) < 8) {
             $errors['password'] = "Can't be less than 8 simbols";
         }
-
         return $errors;
     }
 }
