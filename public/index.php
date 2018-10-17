@@ -11,14 +11,13 @@ try {
     $response->write('Невозможно установить соединение с БД');
 }
 
+session_start();
+
 $config = [
     'settings' => [
         'displayErrorDetails' => true,
     ],
 ];
-
-$repo = new Repository();
-
 $app = new \Slim\App($config);
 $container = $app->getContainer();
 $container['renderer'] = new \Slim\Views\PhpRenderer(__DIR__ . '/../templates');
@@ -118,6 +117,39 @@ $app->delete('/users/{id}', function ($request, $response, array $args) use ($pd
     $pdo->exec("DELETE FROM users WHERE id = {$args['id']}");
     $this->flash->addMessage('success', 'User has been deleted');
     return $response->withRedirect($this->router->pathFor('users'));
+});
+
+$app->get('/games', function ($request, $response) {
+    $flash = $this->flash->getMessages();
+    $params = [
+        'flash' => $flash,
+    ];
+    return $this->renderer->render($response, 'games/index.phtml', $params);
+})->setName('games');
+
+$app->get('/games/{name}', function ($request, $response, array $args) {
+    $name = $args['name'];
+    if ($name === 'even') {
+        $game = new \App\Even();
+    }
+    if ($name === 'balance') {
+        $game = new \App\Balance();
+    }
+    if ($name === 'progression') {
+        $game = new \App\Progression();
+    }
+    if ($name === 'gcd') {
+        $game = new \App\Gcd();
+    }
+    if ($name === 'prime') {
+        $game = new \App\Prime();
+    }
+    ['question' => $question, 'description' => $description ] = $game->getData();
+    $params = [
+        'description' => $description,
+        'question' => $question,
+    ];
+    return $this->renderer->render($response, 'games/run.phtml', $params);
 });
 
 $app->run();
